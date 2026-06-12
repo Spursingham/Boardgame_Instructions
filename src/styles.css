@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: #1f2430;
+  background: #f6f8fa;
+  line-height: 1.55;
+}
+
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h1 {
+  margin-bottom: 0.25rem;
+}
+
+.tagline {
+  margin-top: 0;
+  color: #51606f;
+}
+
+.back-link {
+  display: inline-block;
+  padding: 0.5rem 0;
+  color: #2a6db5;
+}
+
+/* Home page */
+.game-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.game-card a {
+  display: block;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #d6dee6;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.game-card a:hover,
+.game-card a:focus-visible {
+  border-color: #2a6db5;
+  box-shadow: 0 2px 8px rgba(42, 109, 181, 0.15);
+}
+
+.game-card h2 {
+  margin: 0 0 0.25rem;
+}
+
+.game-card p {
+  margin: 0.25rem 0;
+}
+
+.game-meta {
+  color: #51606f;
+  font-size: 0.9rem;
+}
+
+/* Overview */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.overview-grid > div {
+  background: #fff;
+  border: 1px solid #d6dee6;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.overview-grid dt {
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #51606f;
+}
+
+.overview-grid dd {
+  margin: 0.25rem 0 0;
+}
+
+/* Board */
+.board {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #c3d2df;
+  display: block;
+}
+
+.space-label {
+  font-size: 19px;
+  font-weight: 600;
+  fill: #1f2430;
+  paint-order: stroke;
+  stroke: #f0f5fa;
+  stroke-width: 4px;
+}
+
+/* Tutorial */
+.tutorial-panel {
+  background: #fff;
+  border: 1px solid #d6dee6;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 0.75rem;
+}
+
+.step-counter {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #51606f;
+}
+
+.step-body h3 {
+  margin: 0.25rem 0;
+}
+
+.step-body p {
+  margin: 0;
+  min-height: 4.5em;
+}
+
+.tutorial-controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.tutorial-controls button {
+  flex: 1;
+  min-height: 48px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #2a6db5;
+  background: #2a6db5;
+  color: #fff;
+  cursor: pointer;
+}
+
+.tutorial-controls button:disabled {
+  background: #c3d2df;
+  border-color: #c3d2df;
+  cursor: default;
+}
+
+.tutorial-controls button:not(:disabled):hover,
+.tutorial-controls button:not(:disabled):focus-visible {
+  background: #1f578f;
+}
