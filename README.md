@@ -30,8 +30,9 @@ Then open the printed URL (default `http://localhost:5173`).
 Adding a game is a data task — no component changes needed:
 
 1. Create `src/games/<game-id>.ts` exporting a `GameDefinition`:
-   - `overview`, `setup`, and `howToPlay` text,
-   - `board`: spaces (with x/y coordinates) and connections between them,
+   - `overview`, `setup`, `howToPlay`, and optional `rules` text,
+   - `board`: spaces (with x/y coordinates), connections between them, and
+     optional decorative `regions` polygons (continents, zones),
    - `pieces`: the starting position,
    - `tutorial`: steps, each with a `title`, `text`, and `boardActions`
      (`move`, `add`, `remove`, `showCard`, `discardCard`, `highlight`).

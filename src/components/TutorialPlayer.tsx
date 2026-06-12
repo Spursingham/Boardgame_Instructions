@@ -32,6 +32,14 @@ export default function TutorialPlayer({ game }: TutorialPlayerProps) {
         <p className="step-counter" aria-hidden="true">
           {step ? `Step ${stepIndex + 1} of ${total}` : 'Starting position'}
         </p>
+        <div className="step-dots" aria-hidden="true">
+          {game.tutorial.map((_, i) => (
+            <span
+              key={i}
+              className={i === stepIndex ? 'dot active' : i < stepIndex ? 'dot done' : 'dot'}
+            />
+          ))}
+        </div>
         <div aria-live="polite" className="step-body">
           <h3>{step ? step.title : 'The board is set up'}</h3>
           <p>

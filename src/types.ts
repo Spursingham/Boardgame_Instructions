@@ -22,11 +22,20 @@ export interface BoardConnection {
   to: string;
 }
 
+/** A decorative filled shape drawn behind the spaces (continent, zone, etc.). */
+export interface BoardRegion {
+  id: string;
+  /** SVG polygon points string, e.g. "40,110 200,90 340,110". */
+  points: string;
+  color: string;
+}
+
 export interface BoardLayout {
   /** SVG viewBox dimensions; all coordinates are in these units. */
   width: number;
   height: number;
   background?: string;
+  regions?: BoardRegion[];
   spaces: BoardSpace[];
   connections: BoardConnection[];
 }
@@ -70,6 +79,12 @@ export interface TutorialStep {
   boardActions: BoardAction[];
 }
 
+/** A titled group of rule points for the optional Full Rules section. */
+export interface RuleSection {
+  heading: string;
+  items: string[];
+}
+
 export interface GameDefinition {
   id: string;
   name: string;
@@ -82,6 +97,8 @@ export interface GameDefinition {
   };
   setup: string[];
   howToPlay: string[];
+  /** Optional complete rules reference, shown below How to Play. */
+  rules?: RuleSection[];
   board: BoardLayout;
   /** Starting position. */
   pieces: Piece[];
