@@ -93,7 +93,7 @@ export default function Board({ layout, state, label }: BoardProps) {
           key={region.id}
           points={region.points}
           fill={region.color}
-          stroke="rgba(31, 36, 48, 0.18)"
+          stroke="rgba(255, 255, 255, 0.14)"
           strokeWidth={2}
           strokeLinejoin="round"
         />
@@ -122,7 +122,7 @@ export default function Board({ layout, state, label }: BoardProps) {
             {highlighted && (
               <motion.circle
                 cx={s.x} cy={s.y} r={r + 8}
-                fill="none" stroke="#f4b400" strokeWidth={4}
+                fill="none" stroke="#38e1ff" strokeWidth={4}
                 initial={false}
                 animate={reducedMotion ? { opacity: 1 } : { opacity: [0.4, 1, 0.4] }}
                 transition={reducedMotion ? { duration: 0 } : { duration: 1.6, repeat: Infinity }}
@@ -166,7 +166,7 @@ export default function Board({ layout, state, label }: BoardProps) {
               {highlighted && (
                 <motion.circle
                   r={16}
-                  fill="none" stroke="#f4b400" strokeWidth={3}
+                  fill="none" stroke="#38e1ff" strokeWidth={3}
                   initial={false}
                   animate={reducedMotion ? { opacity: 1 } : { opacity: [0.4, 1, 0.4] }}
                   transition={reducedMotion ? { duration: 0 } : { duration: 1.6, repeat: Infinity }}

@@ -1,10 +1,10 @@
 import type { GameDefinition } from '../types';
 
-const BLUE = '#3b82c4';
-const YELLOW = '#d9a520';
-const BLACK = '#5d6470';
-const RED = '#c4453b';
-const LAND = '#b9c9a3';
+const BLUE = '#3b9ae0';
+const YELLOW = '#e8b73a';
+const BLACK = '#9aa5b8';
+const RED = '#e85a4f';
+const LAND = '#1d3f4e';
 
 /**
  * Pandemic, simplified for first-time players. The board is a teaching
@@ -98,7 +98,7 @@ const pandemic: GameDefinition = {
   board: {
     width: 1100,
     height: 600,
-    background: '#9ec3dd',
+    background: '#0a1a2c',
     regions: [
       { id: 'northamerica', points: '35,105 200,80 345,105 360,205 305,295 240,340 150,350 70,295 30,200', color: LAND },
       { id: 'southamerica', points: '205,350 305,340 365,405 365,510 290,555 225,530 190,435', color: LAND },
