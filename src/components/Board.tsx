@@ -78,6 +78,15 @@ export default function Board({ layout, state, label }: BoardProps) {
       aria-label={label}
       style={{ background: layout.background ?? '#dfe8f0' }}
     >
+      <defs>
+        <filter id="piece-shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="5" stdDeviation="3" floodColor="#1f2430" floodOpacity="0.35" />
+        </filter>
+        <filter id="space-shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="3" stdDeviation="2" floodColor="#1f2430" floodOpacity="0.25" />
+        </filter>
+      </defs>
+
       {/* Connections */}
       {layout.connections.map((c) => {
         const a = spaceById.get(c.from);
@@ -107,7 +116,11 @@ export default function Board({ layout, state, label }: BoardProps) {
                 transition={reducedMotion ? { duration: 0 } : { duration: 1.6, repeat: Infinity }}
               />
             )}
-            <circle cx={s.x} cy={s.y} r={r} fill={s.color ?? '#5b7a99'} stroke="#1f2430" strokeWidth={2} />
+            <circle
+              cx={s.x} cy={s.y} r={r}
+              fill={s.color ?? '#5b7a99'} stroke="#1f2430" strokeWidth={2}
+              filter="url(#space-shadow)"
+            />
             <text
               x={s.x} y={s.y + r + 16}
               textAnchor="middle"
@@ -127,9 +140,14 @@ export default function Board({ layout, state, label }: BoardProps) {
           return (
             <motion.g
               key={piece.id}
-              initial={{ opacity: 0, scale: 0.5, x: pos.x, y: pos.y }}
+              filter="url(#piece-shadow)"
+              initial={
+                reducedMotion
+                  ? { opacity: 0, x: pos.x, y: pos.y }
+                  : { opacity: 0, scale: 0.4, x: pos.x, y: pos.y - 45 }
+              }
               animate={{ opacity: 1, scale: 1, x: pos.x, y: pos.y }}
-              exit={{ opacity: 0, scale: 0.5 }}
+              exit={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.4, y: pos.y - 45 }}
               transition={transition}
               aria-label={piece.label}
             >

@@ -95,13 +95,90 @@ h1 {
   margin: 0.25rem 0 0;
 }
 
-/* Board */
+/* Board: CSS perspective tilts the SVG back like a table-top board */
+.board-stage {
+  perspective: 1300px;
+}
+
+.board-tilt {
+  transform: rotateX(24deg) scale(1.04);
+  transform-origin: 50% 90%;
+  transform-style: preserve-3d;
+}
+
 .board {
   width: 100%;
   height: auto;
   border-radius: 12px;
   border: 1px solid #c3d2df;
   display: block;
+  box-shadow: 0 24px 36px rgba(31, 36, 48, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-tilt {
+    transform: none;
+  }
+
+  .board {
+    box-shadow: 0 4px 12px rgba(31, 36, 48, 0.15);
+  }
+}
+
+/* Cards */
+.card-hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: stretch;
+  min-height: 96px;
+  margin-top: 1.25rem;
+  padding: 0.6rem;
+  background: #eef3f8;
+  border: 1px dashed #c3d2df;
+  border-radius: 12px;
+  perspective: 800px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 108px;
+  background: #fff;
+  border: 1px solid #c3d2df;
+  border-top: 6px solid;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(31, 36, 48, 0.2);
+}
+
+.card-kind {
+  padding: 0.2rem 0.5rem;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-name {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.5rem;
+  font-weight: 600;
+}
+
+.card-highlight {
+  outline: 3px solid #f4b400;
+  outline-offset: 2px;
+}
+
+.card-empty {
+  margin: auto 0;
+  padding: 0 0.25rem;
+  color: #51606f;
+  font-size: 0.9rem;
 }
 
 .space-label {

@@ -133,9 +133,19 @@ const pandemic: GameDefinition = {
       boardActions: [{ type: 'remove', pieceId: 'cube-chicago-2' }],
     },
     {
-      title: 'Build a research station',
-      text: 'If you are holding the card that matches the city you are in, you can spend an action to build a research station there. The orange player builds one in Chicago — the team will need stations to discover cures.',
+      title: 'Draw player cards',
+      text: 'After your 4 actions, you draw 2 player cards. Each shows a city and its colour. Cards are how you build things and discover cures — collect 5 city cards of the same colour to cure that disease!',
       boardActions: [
+        { type: 'showCard', card: { id: 'card-chicago', name: 'Chicago', kind: 'City card', color: BLUE } },
+        { type: 'showCard', card: { id: 'card-miami', name: 'Miami', kind: 'City card', color: YELLOW } },
+        { type: 'highlight', targets: ['card-chicago', 'card-miami'] },
+      ],
+    },
+    {
+      title: 'Build a research station',
+      text: 'If you are holding the card that matches the city you are in, you can spend an action to build a research station there. The orange player is in Chicago and just drew the Chicago card — they discard it to build a station. The team will need stations to discover cures.',
+      boardActions: [
+        { type: 'discardCard', cardId: 'card-chicago' },
         {
           type: 'add',
           piece: { id: 'station-chicago', spaceId: 'chicago', shape: 'building', color: '#f5f5f0', label: 'Research station in Chicago' },
@@ -153,8 +163,9 @@ const pandemic: GameDefinition = {
     },
     {
       title: 'Diseases fight back',
-      text: 'At the end of every turn, you flip infection cards and add new cubes to the cities shown. Here, London gets a second blue cube and Madrid gets its first. The map never stays clean for long!',
+      text: 'At the end of every turn, you flip infection cards and add new cubes to the cities shown. This one says London — so London gets a second blue cube, and the next card gives Madrid its first. The map never stays clean for long!',
       boardActions: [
+        { type: 'showCard', card: { id: 'card-infect-london', name: 'London', kind: 'Infection card', color: '#3c4654' } },
         {
           type: 'add',
           piece: { id: 'cube-london-2', spaceId: 'london', shape: 'cube', color: BLUE, label: 'Blue disease cube in London' },
@@ -168,8 +179,11 @@ const pandemic: GameDefinition = {
     },
     {
       title: 'How you win',
-      text: 'Collect 5 city cards of the same colour, travel to any research station, and spend an action to cure that disease. Cure all four diseases and the whole team wins — good luck out there!',
-      boardActions: [{ type: 'highlight', targets: ['station-atlanta', 'station-chicago'] }],
+      text: 'Collect 5 city cards of the same colour — like the Miami card you are holding — then travel to any research station and spend an action to cure that disease. Cure all four diseases and the whole team wins — good luck out there!',
+      boardActions: [
+        { type: 'discardCard', cardId: 'card-infect-london' },
+        { type: 'highlight', targets: ['station-atlanta', 'station-chicago', 'card-miami'] },
+      ],
     },
   ],
 };

@@ -42,12 +42,26 @@ export interface Piece {
   label: string;
 }
 
+/** A card a player can draw, hold, or discard during the tutorial. */
+export interface Card {
+  id: string;
+  name: string;
+  /** Shown as the card's small header, e.g. "City card" or "Infection card". */
+  kind: string;
+  /** Accent colour of the card face. */
+  color: string;
+}
+
 /** Declarative things a tutorial step can do to the board. */
 export type BoardAction =
   | { type: 'move'; pieceId: string; toSpaceId: string }
   | { type: 'remove'; pieceId: string }
   | { type: 'add'; piece: Piece }
-  /** Draw attention to spaces and/or pieces for the duration of the step. */
+  /** Deal a card into the visible hand (animated flip). */
+  | { type: 'showCard'; card: Card }
+  /** Remove a card from the visible hand (animated discard). */
+  | { type: 'discardCard'; cardId: string }
+  /** Draw attention to spaces, pieces, and/or cards for the duration of the step. */
   | { type: 'highlight'; targets: string[] };
 
 export interface TutorialStep {

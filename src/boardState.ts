@@ -1,8 +1,10 @@
-import type { GameDefinition, Piece } from './types';
+import type { Card, GameDefinition, Piece } from './types';
 
 export interface BoardState {
   pieces: Piece[];
-  /** Space and piece ids highlighted by the current step. */
+  /** Cards currently shown in the hand area. */
+  cards: Card[];
+  /** Space, piece, and card ids highlighted by the current step. */
   highlights: Set<string>;
 }
 
@@ -14,6 +16,7 @@ export interface BoardState {
  */
 export function boardStateAtStep(game: GameDefinition, stepIndex: number): BoardState {
   let pieces = game.pieces.slice();
+  let cards: Card[] = [];
   const highlights = new Set<string>();
 
   for (let i = 0; i <= stepIndex && i < game.tutorial.length; i++) {
@@ -31,6 +34,12 @@ export function boardStateAtStep(game: GameDefinition, stepIndex: number): Board
         case 'add':
           pieces = [...pieces, action.piece];
           break;
+        case 'showCard':
+          cards = [...cards, action.card];
+          break;
+        case 'discardCard':
+          cards = cards.filter((c) => c.id !== action.cardId);
+          break;
         case 'highlight':
           // Highlights only apply while their step is the current one.
           if (isCurrent) action.targets.forEach((t) => highlights.add(t));
@@ -39,5 +48,5 @@ export function boardStateAtStep(game: GameDefinition, stepIndex: number): Board
     }
   }
 
-  return { pieces, highlights };
+  return { pieces, cards, highlights };
 }
