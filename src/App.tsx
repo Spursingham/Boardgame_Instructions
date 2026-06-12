@@ -19,14 +19,31 @@ export default function App() {
   const gameMatch = hash.match(/^#\/game\/([\w-]+)/);
   const game = gameMatch ? games.find((g) => g.id === gameMatch[1]) : undefined;
 
-  if (gameMatch && !game) {
-    return (
-      <main className="page">
-        <h1>Game not found</h1>
-        <p><a href="#/">Back to all games</a></p>
-      </main>
-    );
-  }
+  return (
+    <div className="site">
+      <header className="site-header">
+        <a href="#/" className="site-logo">
+          <span aria-hidden="true">⬡</span> How to Play
+        </a>
+        <nav aria-label="Main">
+          <a href="#/">Games</a>
+        </nav>
+      </header>
 
-  return game ? <GamePage game={game} /> : <HomePage games={games} />;
+      {gameMatch && !game ? (
+        <main className="page">
+          <h1>Game not found</h1>
+          <p className="lead"><a className="back-link" href="#/">← Back to all games</a></p>
+        </main>
+      ) : game ? (
+        <GamePage game={game} />
+      ) : (
+        <HomePage games={games} />
+      )}
+
+      <footer className="site-footer">
+        <p>Built for family game nights · New games are just a data file away</p>
+      </footer>
+    </div>
+  );
 }
