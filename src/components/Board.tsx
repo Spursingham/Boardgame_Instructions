@@ -87,6 +87,18 @@ export default function Board({ layout, state, label }: BoardProps) {
         </filter>
       </defs>
 
+      {/* Decorative regions (continents, zones) behind everything */}
+      {layout.regions?.map((region) => (
+        <polygon
+          key={region.id}
+          points={region.points}
+          fill={region.color}
+          stroke="rgba(31, 36, 48, 0.18)"
+          strokeWidth={2}
+          strokeLinejoin="round"
+        />
+      ))}
+
       {/* Connections */}
       {layout.connections.map((c) => {
         const a = spaceById.get(c.from);
@@ -96,7 +108,7 @@ export default function Board({ layout, state, label }: BoardProps) {
           <line
             key={`${c.from}-${c.to}`}
             x1={a.x} y1={a.y} x2={b.x} y2={b.y}
-            stroke="#9bb0c1" strokeWidth={3}
+            stroke="rgba(255, 255, 255, 0.75)" strokeWidth={3} strokeDasharray="1 6" strokeLinecap="round"
           />
         );
       })}
@@ -104,7 +116,7 @@ export default function Board({ layout, state, label }: BoardProps) {
       {/* Spaces */}
       {layout.spaces.map((s) => {
         const highlighted = state.highlights.has(s.id);
-        const r = s.radius ?? 14;
+        const r = s.radius ?? 12;
         return (
           <g key={s.id}>
             {highlighted && (
@@ -122,7 +134,7 @@ export default function Board({ layout, state, label }: BoardProps) {
               filter="url(#space-shadow)"
             />
             <text
-              x={s.x} y={s.y + r + 16}
+              x={s.x} y={s.y + r + 15}
               textAnchor="middle"
               className="space-label"
             >

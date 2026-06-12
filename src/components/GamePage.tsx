@@ -32,6 +32,20 @@ export default function GamePage({ game }: { game: GameDefinition }) {
         </ol>
       </section>
 
+      {game.rules && (
+        <section aria-labelledby="rules-heading">
+          <h2 id="rules-heading">Full Rules</h2>
+          {game.rules.map((section) => (
+            <div key={section.heading} className="rule-section">
+              <h3>{section.heading}</h3>
+              <ul>
+                {section.items.map((item, i) => <li key={i}>{item}</li>)}
+              </ul>
+            </div>
+          ))}
+        </section>
+      )}
+
       <section aria-labelledby="tutorial-heading">
         <h2 id="tutorial-heading">Interactive Tutorial</h2>
         <TutorialPlayer game={game} />
