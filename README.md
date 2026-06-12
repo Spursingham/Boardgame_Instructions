@@ -34,7 +34,7 @@ Adding a game is a data task — no component changes needed:
    - `board`: spaces (with x/y coordinates) and connections between them,
    - `pieces`: the starting position,
    - `tutorial`: steps, each with a `title`, `text`, and `boardActions`
-     (`move`, `add`, `remove`, `highlight`).
+     (`move`, `add`, `remove`, `showCard`, `discardCard`, `highlight`).
 2. Register it in `src/games/index.ts` by adding it to the `games` array.
 
 The home page card, game page, board rendering, and animated tutorial all come

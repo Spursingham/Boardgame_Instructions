@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { GameDefinition } from '../types';
 import { boardStateAtStep } from '../boardState';
 import Board from './Board';
+import CardHand from './CardHand';
 
 interface TutorialPlayerProps {
   game: GameDefinition;
@@ -19,7 +20,13 @@ export default function TutorialPlayer({ game }: TutorialPlayerProps) {
 
   return (
     <div className="tutorial">
-      <Board layout={game.board} state={state} label={`${game.name} game board`} />
+      <div className="board-stage">
+        <div className="board-tilt">
+          <Board layout={game.board} state={state} label={`${game.name} game board`} />
+        </div>
+      </div>
+
+      <CardHand cards={state.cards} highlights={state.highlights} />
 
       <div className="tutorial-panel">
         <p className="step-counter" aria-hidden="true">
